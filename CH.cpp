@@ -15,7 +15,7 @@ struct DegComp{
 	bool operator< (const DegComp d) const{
 		if(_DD[x]!=_DD[d.x])
 			return _DD[x]<_DD[d.x];
-		if(_DD2[x]!=_DD2[x])
+		if(_DD2[x]!=_DD2[d.x])
 			return _DD2[x]<_DD2[d.x];
 		return x<d.x;
 	}
