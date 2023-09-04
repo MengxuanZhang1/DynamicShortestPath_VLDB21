@@ -700,7 +700,8 @@ void Graph::eachNodeProcessIncrease1(int children, vector<int>& line, int& chang
 			//line[i]
 			for(int k=0;k<VidtoTNid[line[i]].size();k++){
 				PID=VidtoTNid[line[i]][k];
-				if(PID>children){
+				//if(PID>children){
+				if(Tree[PID].height>Tree[children].height){
 					if(Tree[PID].FN[i] && Tree[PID].dis[childH]==disBF+Tree[PID].dis[i]){
 						Tree[PID].cnt[childH]-=1;
 					}
