@@ -1780,7 +1780,7 @@ void Graph::CHincBatMT(vector<pair<pair<int,int>,pair<int,int>>>& wBatch){
 			Wnodes=SCconNodesMT[s][t];
 		}else{
 			//Wnodes=SCconNodes[make_pair(t,s)];
-			Wnodes=SCconNodesMT[s][t];
+			Wnodes=SCconNodesMT[t][s];
 		}
 
 		for(int i=0;i<Wnodes.size();i++){
