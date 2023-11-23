@@ -313,14 +313,18 @@ void Graph::CorCheckCH(){
 	}
 }
 
-void Graph::CorCheckH2H(){
+void Graph::CorCheckH2H(int times){
 	srand (time(NULL));
 	int s, t, d1, d2, d3;
-	for(int i=0;i<100;i++){
+//    times=1;
+    cout<<"Correctness checking... "<<times<<endl;
+	for(int i=0;i<times;i++){
 		s=rand()%nodenum;
 		t=rand()%nodenum;
+//        s=1392, t=3817;
 		d1=Dij(s,t);
 		d2=QueryH2H(s,t);
+//        cout<<"Q("<<s<<","<<t<<"): "<<d1<<" "<<d2<<endl;
 		if(d1!=d2)
 			cout<<"InCorrect!"<<s<<" "<<t<<" "<<d1<<" "<<d2<<endl;
 	}

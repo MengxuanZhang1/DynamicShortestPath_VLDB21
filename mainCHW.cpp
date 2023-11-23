@@ -23,10 +23,12 @@ int main(){
 	//index construction
 	t1=std::chrono::high_resolution_clock::now();
 	g.CHconsorderMT(orderfile);
+//    g.CHconsMTOrderGenerate(orderfile);
 	t2=std::chrono::high_resolution_clock::now();
 	time_span = std::chrono::duration_cast<std::chrono::duration<double>>(t2-t1);
 	runT= time_span.count();
 	cout<<"CH construction time "<<runT<<endl;
+    exit(0);
 	g.CorCheckCH();
 
 	//index size & efficiency

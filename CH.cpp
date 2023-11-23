@@ -21,7 +21,8 @@ struct DegComp{
 	}
 };
 
-void Graph::CHconsMTOrderGenerate(){
+void Graph::CHconsMTOrderGenerate(string orderfile){
+    cout<<"Generating vertex ordering..."<<endl;
 	int Twidth=0;//tree width
 	//initialize SCconNodesMT
 	map<int, vector<int>> mi;
@@ -121,7 +122,12 @@ void Graph::CHconsMTOrderGenerate(){
 	for(int k=0;k<vNodeOrder.size();k++){
 		NodeOrder[vNodeOrder[k]]=k;
 	}
-	cout<<"Finish Contract"<<" , treewidth "<<Twidth<<endl;
+    ofstream ofile(orderfile);
+    ofile << nodenum << endl;
+    for(int i = 0; i < NodeOrder.size(); i++)
+        ofile << i << " " << NodeOrder[i] << endl;
+    ofile.close();
+    cout<<"Finish Contract"<<" , treewidth "<<Twidth<<endl;
 }
 
 

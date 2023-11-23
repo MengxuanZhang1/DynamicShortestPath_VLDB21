@@ -27,7 +27,7 @@ int main(){
 	time_span = std::chrono::duration_cast<std::chrono::duration<double>>(t2-t1);
 	runT= time_span.count();
 	cout<<"H2H construction time "<<runT<<endl;
-	g.CorCheckH2H();
+	g.CorCheckH2H(10000);
 
 	//index size & efficiency
 	string ODfile=DesFile+"OD";
@@ -45,6 +45,7 @@ int main(){
 	}
 
 	//H2H decrease
+    cout<<"Decrease update..."<<endl;
 	Graph g1=g;
 	t1=std::chrono::high_resolution_clock::now();
 	g1.H2HdecBat(testdataDec);
@@ -52,8 +53,10 @@ int main(){
 	time_span = std::chrono::duration_cast<std::chrono::duration<double>>(t2-t1);
 	runT= time_span.count();
 	cout<<"H2H decrease "<<runT<<" "<<runT/testdata.size()<<endl;
+    g1.CorCheckH2H(10000);
 
 	//H2H increase
+    cout<<"Increase update..."<<endl;
 	Graph g2=g;
 	t1=std::chrono::high_resolution_clock::now();
 	g2.H2HincBatMT(testdataInc);
@@ -61,6 +64,7 @@ int main(){
 	time_span = std::chrono::duration_cast<std::chrono::duration<double>>(t2-t1);
 	runT= time_span.count();
 	cout<<"H2H increase "<<runT<<" "<<runT/testdata.size()<<endl;
+    g2.CorCheckH2H(10000);
 
 	return 0;
 }

@@ -7,7 +7,15 @@
 #include "head.h"
 
 void Graph::H2HconOrderMT(string orderfile){
-	CHconsorderMT(orderfile);
+    ifstream IF(orderfile);
+    if(!IF){
+        cout<<"Cannot open Map "<<orderfile<<endl;
+        CHconsMTOrderGenerate(orderfile);//generating vertex ordering by minimum degree elimination
+        exit(0);
+    }else{
+        IF.close();
+        CHconsorderMT(orderfile);
+    }
 	makeTree();
 	makeIndex();
 }
@@ -144,7 +152,7 @@ void Graph::makeIndexDFS(int p, vector<int>& list){
 	Tree[p].dis.assign(list.size(),INF);
 	Tree[p].cnt.assign(list.size(),0);
 	Tree[p].FN.assign(list.size(),true);
-
+    Tree[p].vAncestor=list;
 	//pos
 	//map<int,Nei> Nmap; Nmap.clear();//shortcut infor ordered by the pos ID
 	for(int i=0;i<NeiNum;i++){
@@ -701,7 +709,8 @@ void Graph::eachNodeProcessIncrease1(int children, vector<int>& line, int& chang
 			for(int k=0;k<VidtoTNid[line[i]].size();k++){
 				PID=VidtoTNid[line[i]][k];
 				//if(PID>children){
-				if(Tree[PID].height>Tree[children].height){
+//				if(Tree[PID].height>Tree[children].height){
+                if(Tree[PID].height>Tree[children].height && Tree[PID].vAncestor[childH] == childID){
 					if(Tree[PID].FN[i] && Tree[PID].dis[childH]==disBF+Tree[PID].dis[i]){
 						Tree[PID].cnt[childH]-=1;
 					}

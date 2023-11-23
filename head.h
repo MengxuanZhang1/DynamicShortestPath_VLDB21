@@ -26,7 +26,7 @@
 #include "Semaphore.h"
 
 #include <functional>
-#include <bits/stdc++.h>
+//#include <bits/stdc++.h>
 #include <utility>
 //to hash any given pair
 struct hash_pair {
@@ -67,6 +67,7 @@ struct Node{//tree node
 	int pa;//parent
 	int uniqueVertex;
 	vector<int> piv;//pivot vetex, used in path retrieval
+    vector<int> vAncestor;//the ancestors, which is corresponding to dis
 	Node(){
 		vert.clear();
 		neighInf.clear();
@@ -82,6 +83,7 @@ struct Node{//tree node
 		FN.clear();
 		DisRe.clear();
 		piv.clear();
+        vAncestor.clear();
 	}
 };
 
@@ -105,7 +107,7 @@ public:
 	vector<int> NodeOrder;
 	vector<int> vNodeOrder;
 	//in Lattice and Regular network, vertex order decided by Minimum Degree Elimination method
-	void CHconsMTOrderGenerate();
+	void CHconsMTOrderGenerate(string orderfile);
 	void insertEMTOrderGenerate(int u,int v,int w);
 	void NeighborComOrderGenerate(vector<pair<int,pair<int,int>>> &Neighvec, pair<int,int> p, int x);
 	//in small-world and scale-free network, vertex order decided by vertex degree
@@ -122,7 +124,7 @@ public:
 	void CorCheckDij();
 	void CorCheckCHPorder();
 	void CorCheckCH();
-	void CorCheckH2H();
+	void CorCheckH2H(int times);
 	void CorCheckPLL();
 
 	//efficiency calculation
